@@ -6,3 +6,23 @@
     - name: "Basic get"
     - url: "/articles"
     - curl_option_followlocation: True
+- test:
+    - name: "Create article"
+    - url: "/articles/"
+    - method: "POST"
+    - body: '{"title": "Newspaper","content": "Hello World"}'
+    - headers: {Content-Type: application/json}
+    - expected_status: [201]
+- test:
+    - name: "Edit article"
+    - url: "/articles/1/"
+    - method: "PUT"
+    - body: '{"title": "Updated Title","content": "Updated content"}'
+    - headers: {Content-Type: application/json}
+    - expected_status: [200]
+- test:
+    - name: "Delete article"
+    - url: "/articles/1/"
+    - method: "DELETE"
+    - expected_status: [204]
+
